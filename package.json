@@ -1,7 +1,7 @@
 {
-  "name": "RSAChat",
+  "name": "chat",
   "version": "0.0.1",
-  "description": "RSAChat",
+  "description": "chat",
   "dependencies": {
     "socket.io": "~1.3.5",
     "express": "~4.12.2",

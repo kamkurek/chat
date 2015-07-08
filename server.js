@@ -26,6 +26,7 @@ function getImgSrc(url) {
 
 io.on('connection', function (socket) {
   var addedUser = false;
+  var hostname = socket.handshake.headers.host;
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
@@ -45,11 +46,11 @@ io.on('connection', function (socket) {
   	} else if (data.indexOf('/mem ') == 0) {
   		data = data.substr(5);
   		if(fs.existsSync(__dirname + '/public/memy/'+data+'.jpg')) {
-  			mem = 'http://kamilkurek.org/memy/'+data+'.jpg';
+  			mem = 'http://'+hostname+'/memy/'+data+'.jpg';
   		} else if(fs.existsSync(__dirname + '/public/memy/'+data+'.png')) {
-  			mem = 'http://kamilkurek.org/memy/'+data+'.png';
+  			mem = 'http://'+hostname+'/memy/'+data+'.png';
   		} else if(fs.existsSync(__dirname + '/public/memy/'+data+'.gif')) {
-  			mem = 'http://kamilkurek.org/memy/'+data+'.gif';
+  			mem = 'http://'+hostname+'/memy/'+data+'.gif';
 		}
   		if(mem=='') {
   			socket.emit('new message', {
