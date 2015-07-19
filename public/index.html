@@ -1,29 +1,41 @@
 <!doctype html>
 <html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <head>
   <meta charset="UTF-8">
   <title>Chat</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <ul class="pages">
-    <li class="chat page">
-      <div class="chatArea">
-        <ul class="messages"></ul>
-      </div>
-      <input class="inputMessage" placeholder="Pisz tutej..."/>
-    </li>
-    <li class="login page">
-      <div class="form">
-        <h3 class="title">Jakie jest imię Twoje ?</h3>
-        <input class="usernameInput" type="text" maxlength="14" />
-      </div>
-    </li>
-  </ul>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <ul class="pages">
+        <li class="chat page">
+          <div class="chatArea">
+            <ul class="messages"></ul>
+          </div>
+            <div id="users">
+                <span id="usersCount">{{user}}</span>
+                <ul>
+                    <li ng-repeat="user in users">
+                        <span>{{user.name}}</span>
+                    </li>
+                </ul>
+            </div>
+            <input class="inputMessage" placeholder="{{placeHolder}}"/>
 
+        </li>
+        <li class="login page">
+          <div class="form">
+            <h3 class="title">{{nameQuestion}}</h3>
+            <input class="usernameInput" type="text" maxlength="14" ng-model="name"/>
+          </div>
+        </li>
+      </ul>
+    </div>
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="/message.js"></script>
-  <script src="/main.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/message.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
