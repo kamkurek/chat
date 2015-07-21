@@ -14,19 +14,19 @@
             <ul class="messages"></ul>
           </div>
             <div id="users">
-                <span id="usersCount">{{user}}</span>
+                <span id="usersCount">{{staticUserCountInfo+' '+'?'}}</span>
                 <ul>
                     <li ng-repeat="user in users">
                         <span>{{user.name}}</span>
                     </li>
                 </ul>
             </div>
-            <input class="inputMessage" placeholder="{{placeHolder}}"/>
+            <input class="inputMessage" placeholder="{{staticPlaceHolder}}"/>
 
         </li>
         <li class="login page">
           <div class="form">
-            <h3 class="title">{{nameQuestion}}</h3>
+            <h3 class="title">{{staticNameQuestion}}</h3>
             <input class="usernameInput" type="text" maxlength="14" ng-model="name"/>
           </div>
         </li>

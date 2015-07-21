@@ -1,4 +1,5 @@
 {
   "nameQuestion" : "Podaj swoje imię",
-  "placeHolder"  : "..."
+  "placeHolder"  : "...",
+  "userCountInfo": "Ilośc zalogowanych:"
 }

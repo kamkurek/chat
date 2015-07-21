@@ -60,6 +60,8 @@ $(function() {
   // Sends a chat message
   function sendMessage () {
     var message = cleanInput($inputMessage.val());
+    console.log(message);
+    console.log(connected);
     if(!connected || !message) return;
 
     $inputMessage.val('');
@@ -191,7 +193,7 @@ $(function() {
     return COLORS[index];
   }
 
-  // Keyboard events
+  // Keyboard eventsusername
 
   $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
@@ -227,5 +229,9 @@ $(function() {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {    
     addChatMessage(data);
+  });
+
+  socket.on('login', function (data) {
+    connected = true;
   });
 });

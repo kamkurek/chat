@@ -22,3 +22,7 @@ exports.removeUser = function(username)  {
 exports.getUserCount = function() {
     return numUsers;
 }
+
+exports.getUserList = function() {
+    return usernames;
+}
