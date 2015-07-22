@@ -1,0 +1,96 @@
+body {
+	background: #ececec;
+}
+
+.entry {
+  max-width: 85%;
+  overflow: hidden;
+}
+
+.userData {
+	float: left;
+	margin: 0px 5px 0px 5px;
+	overflow: hidden;
+}
+
+.userName {
+	text-align: center;
+}
+
+.avatar {
+  float: none;
+  max-width: 70px;
+}
+
+.entry.entry_mine .avatar {
+  box-shadow: 2px 2px 0px #aaa;   
+}
+
+.entry .message {
+  position: relative;
+  margin-left: 90px;
+}
+
+.entry .message::before {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: -12px;
+  height: 0;
+  content: '';
+  border: 6px solid transparent;
+  border-top-color: #f6f7f8;
+  border-right-color: #f6f7f8;
+  z-index: 2;
+}
+
+.message {
+  background-color: #f6f7f8;
+  padding: 10px;
+  box-shadow: 2px 2px 0px #aaa; 
+  margin-right: 5px;
+}
+
+.message .time {
+  display: block;
+  margin: .2em;
+  font-size: 80%;
+  color: #444;
+}
+
+
+
+/*.entry_mine {
+  max-width: 85%;
+  border: 1px solid green;
+  overflow: visible;
+}
+
+.message_mine {
+  position: relative;
+  margin-right: 120px;
+}
+
+
+
+.avatar_mine{
+  float: right;
+  margin: 0px 5px 0px 5px;
+  border: 1px solid green;
+  max-width: 100px;
+}
+.entry_mine .message::before {
+  top: auto;
+  right: -12px;
+  bottom: 0;
+  left: auto;
+  border: 6px solid transparent;
+  border-bottom-color: #66ccff;
+  border-left-color: #66ccff;
+}
+
+.entry_mine .message {
+	background-color: #66ccff;
+}
+*/
