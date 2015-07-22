@@ -1,4 +1,4 @@
 function message() {
-	this.text = '';
-	this.sender = '';
+	this.username = '';
+	this.message = '';
 }

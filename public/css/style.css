@@ -160,3 +160,11 @@ ul {
   right: 0;
   width: 15%;
 }
+
+#users ul { 
+  list-style: none;
+}
+
+#users ul li:before {
+  content: "\00BB \0020";
+}

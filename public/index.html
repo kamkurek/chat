@@ -1,24 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <head>
   <meta charset="UTF-8">
   <title>Chat</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-    <div ng-app="myApp" ng-controller="myCtrl">
+<body ng-controller="myCtrl as ctrl">
+    <div>
       <ul class="pages">
         <li class="chat page">
           <div class="chatArea">
-            <ul class="messages"></ul>
+            <ul class="messages">
+              <li ng-repeat="message in ctrl.messages">{{message.username+': '+message.message}}</li>
+            </ul>            
           </div>
             <div id="users">
-                <span id="usersCount">{{staticUserCountInfo+' '+'?'}}</span>
+                <span id="usersCount">{{staticUserCountInfo+': '+ctrl.users.length}}</span>
                 <ul>
-                    <li ng-repeat="user in users">
-                        <span>{{user.name}}</span>
-                    </li>
+                    <li ng-repeat="user in ctrl.users">{{user.name}}</li>
                 </ul>
             </div>
             <input class="inputMessage" placeholder="{{staticPlaceHolder}}"/>
@@ -34,8 +34,8 @@
     </div>
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/controllers.js"></script>
   <script src="/js/message.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/controllers.js"></script>  
 </body>
 </html>
