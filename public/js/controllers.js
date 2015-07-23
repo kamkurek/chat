@@ -17,17 +17,14 @@ app.controller('myCtrl',function($scope,$http) {
         $scope.$apply();
     });
 
-    // Whenever the server emits 'user left', log it in the chat body
     socket.on('user left', function (data) {
         users.splice( $scope.users.indexOf({'name': data.username }), 1 );
         $scope.$apply();
     });
 
     socket.on('new message', function (data) {    
-        var message = { username : data.username, message : data.message };
-        messages.push(message);
+        messages.push(data);
         $scope.$apply();
-        // addChatMessage(data);
     });
 
     socket.on('login', function (data) {
