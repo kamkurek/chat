@@ -54,6 +54,8 @@
   // Sends a chat message
   function sendMessage () {
     var message = cleanInput($inputMessage.val());
+    console.log("message: " + message);
+    console.log("isConnected: " + connected);
     if(!connected || !message) return;
 
     $inputMessage.val('');
@@ -62,6 +64,90 @@
     } else {
       socket.emit('new message', message);
     }
+  }
+
+  // Log a message
+  function log (message, options) {
+    var $el = $('<li style="font-size: 100px;">').addClass('log').text(message);
+    addMessageElement($el, options);
+  }
+
+  // Adds the visual chat message to the message list
+  function addChatMessage (data, options) {
+    // Don't fade the message in if there is an 'X was typing'
+    var $typingMessages = getTypingMessages(data);
+    options = options || {};
+    if ($typingMessages.length !== 0) {
+      options.fade = false;
+      $typingMessages.remove();
+    }
+	
+	var $usernameDiv = $('<div class="userName"/>')
+		.text(data.username)
+		.css('color', getUsernameColor(data.username));
+		
+    var $avatarDiv = $('<img class="avatar"/>')
+	  .attr("src", "http://historyk.eu/img/avatar.png");
+
+	var $userDataDiv = $('<div class="userData"/>');
+		
+	$userDataDiv.append($avatarDiv, $usernameDiv);
+	  
+    var $messageBodyDiv = $('<p class="message" >')
+      .text(data.message);
+
+    var typingClass = data.typing ? 'typing' : '';
+    var $messageDiv = $('<li class="entry"/>')
+      .data('username', data.username)
+      .addClass(typingClass)
+      .append($userDataDiv, $messageBodyDiv,'<br>');
+
+    addMessageElement($messageDiv, options);
+  }
+
+  // Adds the visual chat typing message
+  function addChatTyping (data) {
+    data.typing = true;
+    data.message = 'is typing';
+    addChatMessage(data);
+  }
+
+  // Removes the visual chat typing message
+  function removeChatTyping (data) {
+    getTypingMessages(data).fadeOut(function () {
+      $(this).remove();
+    });
+  }
+
+  // Adds a message element to the messages and scrolls to the bottom
+  // el - The element to add as a message
+  // options.fade - If the element should fade-in (default = true)
+  // options.prepend - If the element should prepend
+  //   all other messages (default = false)
+  function addMessageElement (el, options) {
+    var $el = $(el);
+
+    // Setup default options
+    if (!options) {
+      options = {};
+    }
+    if (typeof options.fade === 'undefined') {
+      options.fade = true;
+    }
+    if (typeof options.prepend === 'undefined') {
+      options.prepend = false;
+    }
+
+    // Apply options
+    if (options.fade) {
+      $el.hide().fadeIn(FADE_TIME);
+    }
+    if (options.prepend) {
+      $messages.prepend($el);
+    } else {
+      $messages.append($el);
+    }
+    $messages[0].scrollTop = $messages[0].scrollHeight;
   }
 
   // Prevents input from having injected markup

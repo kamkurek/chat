@@ -9,6 +9,7 @@ exports.addUser = function (username) {
     console.log('adduser '+username);
     usernames[username] = username;
     ++numUsers;
+	console.log('users count '+numUsers);
 }
 
 exports.removeUser = function(username)  {

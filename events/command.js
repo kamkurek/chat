@@ -9,7 +9,7 @@ function getImgSrc(url) {
 
 exports.handle = function (io,socket,data) {
     if(data.indexOf('/test ')===0) commandTest.handle(io,socket,data);
-
+    console.log('wiadomosc: ' + data);
     //var hostname = socket.handshake.headers.host;
     //var mem = '';
     //
